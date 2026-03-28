@@ -1,0 +1,35 @@
+修改网站的图片或文字非常直观，所有内容几乎都集中在 app.tsx 文件中。
+
+以下是具体的修改指南：
+
+### 1. 修改文字内容
+您只需在 app.tsx 中找到对应的文字并直接修改即可。
+
+- 联系方式 ：在顶部的 CONTACT_CONFIG 对象中修改电话、邮箱和地址。
+- 主标题和描述 ：搜索 Hero Section （约 180 行），修改 <h1> 和 <p> 标签内的内容。
+- 服务项目 ：修改 services 数组（约 90 行），可以调整图标（Emoji）、标题和描述。
+- 客户案例 ：修改 testimonials 数组（约 60 行），更新客户姓名、公司和评价内容。
+### 2. 修改图片
+项目中主要有两种图片处理方式：
+ A. 静态图片（如二维码、Logo）
+1. 上传图片 ：将您的新图片（如 my-logo.png ）放入根目录下的 public 文件夹中。
+2. 引用图片 ：在代码中使用以 / 开头的路径。
+   - 例如修改二维码：将 CONTACT_CONFIG 中的 wechatQR 改为 '/my-logo.png' 。
+   - 例如在页面中添加图片： <img src="/my-logo.png" alt="Logo" /> 。 B. 背景颜色与渐变
+项目使用了 Tailwind CSS。如果您想修改顶部的紫色渐变背景：
+
+- 找到 gradient-bg 类名（在 index.css 中定义）。
+- 修改 linear-gradient 中的颜色值（如 #667eea 改为您喜欢的颜色）。
+### 3. 如何让修改生效（上线）
+由于您已经关联了 Cloudflare Pages，流程非常简单：
+
+1. 在本地修改 代码并保存。
+2. 提交并推送 到 GitHub：
+   ```
+   git add .
+   git commit -m "fix: update 
+   website content and images"
+   git push
+   ```
+3. 自动更新 ：一旦您执行了 git push ，Cloudflare 会感应到代码变动， 自动开始重新构建和部署 。大约 1-2 分钟后，您的线上网站就会自动显示更新后的内容。
+小技巧 ：在推送之前，您可以先在 Trae 的预览窗口查看效果，确认无误后再推送到 GitHub，这样可以确保线上版本始终是完美的。
